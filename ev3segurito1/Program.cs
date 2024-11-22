@@ -29,7 +29,3 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-
-services.AddIdentity<User, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();

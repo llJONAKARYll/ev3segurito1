@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore; // Para trabajar con Entity Framework Core
 using ev3segurito1.Models; // Namespace donde están los modelos (User, Registro, etc.)
 
+namespace ev3segurito1.DataBase {
 public class ApplicationDbContext : DbContext
 {
     // Constructor que utiliza opciones para configurar la conexión a la base de datos
