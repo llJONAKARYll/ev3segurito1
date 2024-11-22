@@ -30,17 +30,26 @@ using ev3segurito1.DataBase;
 
         // POST: Crear
         [HttpPost]
-        public IActionResult Crear(Registro registro)
+        // GET: Registro/Create
+        public IActionResult Create()
+        {
+            return View(); // Esto busca la vista "Create.cshtml" en la carpeta "Views/Registro"
+        }
+
+        // POST: Registro/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Registro registro)
         {
             if (ModelState.IsValid)
             {
-                registro.FechaCreacion = DateTime.Now;
                 _context.Registro.Add(registro);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index)); // Redirige al listado
             }
-            return View(registro);
+            return View(registro); // Retorna la vista con los datos en caso de error
         }
+
     }
 
 }
