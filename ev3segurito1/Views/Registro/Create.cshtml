@@ -1,0 +1,28 @@
+﻿@model ev3segurito1.Models.Registro
+
+@{
+    ViewData["Title"] = "Crear Nuevo Registro";
+}
+
+<h1>Crear Nuevo Registro</h1>
+
+<form asp-controller="Registro" asp-action="Create" method="post" class="mt-4">
+    <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <input type="text" class="form-control" id="Nombre" name="Nombre" value="@Model?.Nombre" required />
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="Descripcion">Descripción</label>
+        <textarea class="form-control" id="Descripcion" name="Descripcion" rows="3">@Model?.Descripcion</textarea>
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="FechaCreacion">Fecha de Creación</label>
+        <input type="date" class="form-control" id="FechaCreacion" name="FechaCreacion"
+               value="@Model?.FechaCreacion.ToString("yyyy-MM-dd")" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4">Guardar</button>
+    <a asp-controller="Registro" asp-action="Index" class="btn btn-secondary mt-4">Cancelar</a>
+</form>
