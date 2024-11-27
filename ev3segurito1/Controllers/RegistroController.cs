@@ -54,24 +54,13 @@ using ev3segurito1.DataBase;
 
             var registro = await _context.Registros
                 .Include(r => r.Usuario)
-                .FirstOrDefaultAsync(m => m.IDRegistro == id);
+                .FirstOrDefaultAsync(m => m.IDRegistro == id); // Cambiado IDRegistro
             if (registro == null)
             {
                 return NotFound();
             }
 
             return View(registro);
-        }
-
-        // POST: Registro/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var registro = await _context.Registros.FindAsync(id);
-            _context.Registros.Remove(registro);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
     }
 

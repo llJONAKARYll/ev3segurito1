@@ -1,18 +1,17 @@
 using ev3segurito1.DataBase;
-using ev3segurito1.Models;
-using FluentAssertions.Common;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
+
 internal class Program
-{
+{ 
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
+            
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+        builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         var app = builder.Build();
 
@@ -37,7 +36,6 @@ internal class Program
 
         app.Run();
 
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+        
     }
 }
