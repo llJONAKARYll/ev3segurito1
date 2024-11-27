@@ -1,6 +1,6 @@
 ﻿namespace ev3segurito1.Models
 {
-    public class User
+    public class Users
     {
         public int Id { get; set; }
         public string Username { get; set; }
