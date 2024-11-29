@@ -2,11 +2,28 @@
 
 namespace ev3segurito1.Models
 {
-    public class Respaldos
+    public class Respaldo
     {
-        [Key]
-        public int Id { get; set; } // Clave primaria
-        public string FileName { get; set; }
-        public DateTime CreatedAt { get; set; }
+        private int idRespaldo;
+        public int IDRespaldo
+        {
+            get { return idRespaldo; }
+            set { idRespaldo = value; }
+        }
+
+        private DateTime fecha;
+        public DateTime Fecha
+        {
+            get { return fecha; }
+            set { fecha = value; }
+        }
+
+        private string rutaArchivo;
+        public string RutaArchivo
+        {
+            get { return rutaArchivo; }
+            set { rutaArchivo = value; }
+        }
     }
+
 }

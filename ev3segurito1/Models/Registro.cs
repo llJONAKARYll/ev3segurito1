@@ -6,24 +6,35 @@ namespace ev3segurito1.Models
 {
     public class Registro
     {
-        [Key]
-        public int IDRegistro { get; set; } // Corregido de 'Id'
+        private int idRegistro;
+        public int IDRegistro
+        {
+            get { return idRegistro; }
+            set { idRegistro = value; }
+        }
 
-        [Required]
-        public DateTime FechaCreacion { get; set; } = DateTime.Now;
+        private DateTime fecha;
+        public DateTime Fecha
+        {
+            get { return fecha; }
+            set { fecha = value; }
+        }
 
-        [Required]
-        [StringLength(255)]
-        public string Nombre { get; set; }
+        private string datos;
+        public string Datos
+        {
+            get { return datos; }
+            set { datos = value; }
+        }
 
-        [StringLength(500)]
-        public string Descripcion { get; set; } // Propiedad agregada
-
-        [ForeignKey("Usuario")]
-        public int IDUsuario { get; set; }
-
-        public Users Usuario { get; set; } // Propiedad de navegación
+        private int idUsuario;
+        public int IDUsuario
+        {
+            get { return idUsuario; }
+            set { idUsuario = value; }
+        }
     }
+
 }
 
 
