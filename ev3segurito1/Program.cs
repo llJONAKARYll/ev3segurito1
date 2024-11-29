@@ -2,35 +2,29 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ev3segurito1.DataBase;
 
+using ev3segurito1.Models;  // Asegúrate de que tu clase 'Users' esté en el espacio de nombres correcto
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuración de la cadena de conexión
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-// Agregar DbContext
+// Configuración de la cadena de conexión para la base de datos
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Configurar Razor Pages y controladores
+// Configuración de Identity
+builder.Services.AddIdentity<Users, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
+// Configurar otros servicios y MVC
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
-
-app.UseAuthentication();
+// Rutas y middleware
+app.UseAuthentication();  // Asegúrate de que la autenticación esté habilitada
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 app.Run();
