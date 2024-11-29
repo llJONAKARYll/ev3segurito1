@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ev3segurito1.Models;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using ev3segurito1.DataBase;
 
  
@@ -17,51 +14,25 @@ using ev3segurito1.DataBase;
             _context = context;
         }
 
-        // GET: Registro
-        public async Task<IActionResult> Index()
+        // Asegúrate de que esta acción exista
+        public IActionResult Index()
         {
-            var registros = await _context.Registro.Include(r => r.IDUsuario).ToListAsync();
+            var registros = _context.Registro.ToList();
             return View(registros);
         }
 
-        // GET: Registro/Create
-        public IActionResult Create()
+        // Otra acción (por ejemplo, Eliminar)
+        public IActionResult Eliminar(int id)
         {
-            return View();
-        }
-
-        // POST: Registro/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Descripcion,IDUsuario")] Registro registro)
-        {
-            if (ModelState.IsValid)
+            var registro = _context.Registro.FirstOrDefault(r => r.IDRegistro == id);
+            if (registro != null)
             {
-                _context.Add(registro);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _context.Registro.Remove(registro);
+                _context.SaveChanges();
             }
-            return View(registro);
-        }
-
-        // GET: Registro/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var registro = await _context.Registro
-                .Include(r => r.IDUsuario)
-                .FirstOrDefaultAsync(m => m.IDRegistro == id); // Cambiado IDRegistro
-            if (registro == null)
-            {
-                return NotFound();
-            }
-
-            return View(registro);
+            return RedirectToAction(nameof(Index));
         }
     }
+
 
 }
