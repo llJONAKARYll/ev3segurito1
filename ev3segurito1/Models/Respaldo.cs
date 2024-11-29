@@ -15,5 +15,6 @@ namespace ev3segurito1.Models
         public string RutaArchivo { get; set; } // Ruta donde se guarda el respaldo
 
         public string UsuarioRealizo { get; set; }
+      
     }
 }
