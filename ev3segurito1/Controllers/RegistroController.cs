@@ -20,7 +20,7 @@ using ev3segurito1.DataBase;
         // GET: Registro
         public async Task<IActionResult> Index()
         {
-            var registros = await _context.Registros.Include(r => r.Usuario).ToListAsync();
+            var registros = await _context.Registro.Include(r => r.IDUsuario).ToListAsync();
             return View(registros);
         }
 
@@ -52,8 +52,8 @@ using ev3segurito1.DataBase;
                 return NotFound();
             }
 
-            var registro = await _context.Registros
-                .Include(r => r.Usuario)
+            var registro = await _context.Registro
+                .Include(r => r.IDUsuario)
                 .FirstOrDefaultAsync(m => m.IDRegistro == id); // Cambiado IDRegistro
             if (registro == null)
             {

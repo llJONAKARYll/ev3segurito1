@@ -1,27 +1,40 @@
 ﻿@model IEnumerable<ev3segurito1.Models.Registro>
 
 @{
-    ViewData["Title"] = "Listado de Registros";
+    ViewData["Title"] = "Lista de Registros";
 }
 
-<h1>Listado de Registros</h1>
+<h2>@ViewData["Title"]</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Fecha Creación</th>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Datos</th>
+            <th>ID Usuario</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var registro in Model)
         {
             <tr>
-                <td>@item.IDRegistro</td>
-                <td>@item.Nombre</td>
-                <td>@item.FechaCreacion.ToShortDateString()</td>
+                <td>@registro.IDRegistro</td>
+                <td>@registro.Fecha.ToString("dd/MM/yyyy")</td>
+                <td>@registro.Datos</td>
+                <td>@registro.IDUsuario</td>
+                <td>
+                    <!-- Acción para eliminar el registro -->
+                    <a href="@Url.Action("Eliminar", "Registro", new { id = registro.IDRegistro })" class="btn btn-danger">Eliminar</a>
+                    <!-- Acción para editar el registro (si lo tienes habilitado) -->
+                    <a href="@Url.Action("Edit", "Registro", new { id = registro.IDRegistro })" class="btn btn-primary">Editar</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+<!-- Opción para agregar un nuevo registro -->
+<a href="@Url.Action("Create", "Registro")" class="btn btn-success">Crear Nuevo Registro</a>
+
