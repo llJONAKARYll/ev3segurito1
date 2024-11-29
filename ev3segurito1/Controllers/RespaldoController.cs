@@ -3,7 +3,7 @@ using ev3segurito1.DataBase;
 using ev3segurito1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Data.Entity;
+
 
 namespace ev3segurito1.Controllers
 {
@@ -20,7 +20,7 @@ namespace ev3segurito1.Controllers
         // GET: Respaldo
         public async Task<IActionResult> Index()
         {
-            var respaldo = await _context.Respaldo.ToListAsync();
+            var respaldo = await _context.Respaldos.ToListAsync();
             return View(respaldo);
         }
 
@@ -33,7 +33,7 @@ namespace ev3segurito1.Controllers
         // POST: Respaldo/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RutaArchivo,UsuarioRealizo")] Respaldos respaldo)
+        public async Task<IActionResult> Create([Bind("RutaArchivo,UsuarioRealizo")] Respaldo respaldo)
         {
             if (ModelState.IsValid)
             {
