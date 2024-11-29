@@ -20,8 +20,8 @@ namespace ev3segurito1.Controllers
         // GET: Respaldo
         public async Task<IActionResult> Index()
         {
-            var respaldos = await _context.Respaldos.ToListAsync();
-            return View(respaldos);
+            var respaldo = await _context.Respaldo.ToListAsync();
+            return View(respaldo);
         }
 
         // GET: Respaldo/Create
@@ -33,7 +33,7 @@ namespace ev3segurito1.Controllers
         // POST: Respaldo/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RutaArchivo,UsuarioRealizo")] Respaldo respaldo)
+        public async Task<IActionResult> Create([Bind("RutaArchivo,UsuarioRealizo")] Respaldos respaldo)
         {
             if (ModelState.IsValid)
             {

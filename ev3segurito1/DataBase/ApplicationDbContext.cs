@@ -1,20 +1,21 @@
 ﻿using ev3segurito1.Models;
-using Microsoft.EntityFrameworkCore; // Para trabajar con Entity Framework Core
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.EntityFrameworkCore;
 using System.Data.Entity;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace ev3segurito1.DataBase
 {
 
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : DbContext
     {
-        private System.Data.Entity.DbSet<Users> usuarios;
-        private System.Data.Entity.DbSet<Registro> registros;
-        private System.Data.Entity.DbSet<Respaldo> respaldos;
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
+
+        public DbSet<Users> Usuarios { get; set; }
+        public DbSet<Registro> Registros { get; set; }
+        public DbSet<Respaldos> Respaldos { get; set; } // Asegúrate de que esta línea esté presente
     }
 }
+
