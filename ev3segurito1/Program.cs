@@ -11,10 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Configuración de Identity
-builder.Services.AddIdentity<Users, IdentityRole>()
-                .AddEntityFrameworkStore<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
 
 // Configurar otros servicios y MVC
 builder.Services.AddControllersWithViews();
