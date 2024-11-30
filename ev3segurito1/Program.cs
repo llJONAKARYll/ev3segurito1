@@ -13,8 +13,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Configuración de Identity
 builder.Services.AddIdentity<Users, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();
+                .AddEntityFrameworkStore<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
 // Configurar otros servicios y MVC
 builder.Services.AddControllersWithViews();
